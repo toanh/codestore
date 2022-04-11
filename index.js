@@ -6,4 +6,4 @@ app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
-app.listen(3000, () => console.log('server started'));
+app.listen(process.env.PORT || 3000, () => console.log('server started'));
