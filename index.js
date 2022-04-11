@@ -28,4 +28,33 @@ app.get('/db', async (req, res) => {
     }
 })
 
+
+
+app.get('/dbtestput', async (req, res) => {
+    const text = 'INSERT INTO code_store(id, code) VALUES($1, $2) RETURNING *';   
+    try {
+      const client = await pool.connect();
+      const result = await client.query(text, ['12345', 'print("Hello, world!")']);
+      const results = { 'results': (result) ? result.rows : null};
+      res.send(results);
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+})
+app.get('/dbtestget', async (req, res) => {
+    const text = 'SELECT * from code_store WHERE id = "$1"';
+    try {
+      const client = await pool.connect();
+      const result = await client.query(text, [req.query.id]);
+      const results = { 'results': (result) ? result.rows : null};
+      res.send(results);
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+})
+
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
