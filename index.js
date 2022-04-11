@@ -1,10 +1,13 @@
 const express = require('express'); 
-const PORT = process.env.PORT || 5000;
 
 const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var shortid = require('shortid');
 
+const PORT = process.env.PORT || 5000;
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -12,6 +15,7 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
+
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');
