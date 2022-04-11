@@ -45,7 +45,7 @@ app.post('/dbput', async (req, res) => {
       const result = await client.query(text, [id, code]);
       const results = { 'results': (result) ? result.rows : null};
       console.log(results);
-      res.send(code);
+      res.send(id);
       client.release();
     } catch (err) {
       console.error(err);
@@ -59,7 +59,7 @@ app.get('/dbget', async (req, res) => {
       const result = await client.query(text, [req.query.id]);
       const results = { 'results': (result) ? result.rows[0] : null};
       console.log(results);
-      res.send(result.rows[0][1]);
+      res.send(result.rows[0]['code']);
       client.release();
     } catch (err) {
       console.error(err);
