@@ -44,7 +44,7 @@ app.get('/dbtestput', async (req, res) => {
     }
 })
 app.get('/dbtestget', async (req, res) => {
-    const text = 'SELECT * from code_store WHERE id = "$1"';
+    const text = 'SELECT * from code_store WHERE id = $1';
     try {
       const client = await pool.connect();
       const result = await client.query(text, [req.query.id]);
