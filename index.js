@@ -46,7 +46,7 @@ app.post('/dbput', async (req, res) => {
       const results = { 'results': (result) ? result.rows : null};
       console.log(results);
       console.log(id);
-      res.send("" + id);
+      res.send(result.rows[0]['id']);
       client.release();
     } catch (err) {
       console.error(err);
