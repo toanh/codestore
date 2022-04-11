@@ -70,13 +70,13 @@ app.get('/dbget', async (req, res) => {
 })
 
 
-app.get('/dbtestput', async (req, res) => {
+app.post('/dbtestput', async (req, res) => {
     const text = 'INSERT INTO code_store(id, code) VALUES($1, $2) RETURNING *';   
     try {
       const client = await pool.connect();
       const result = await client.query(text, ['12345', 'print("Hello, world!")']);
       const results = { 'results': (result) ? result.rows : null};
-      res.send(results);
+      res.send("12345");
       client.release();
     } catch (err) {
       console.error(err);
