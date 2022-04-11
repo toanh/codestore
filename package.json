@@ -1,0 +1,27 @@
+{
+  "name": "codestore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toanh/codestore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toanh/codestore/issues"
+  },
+  "homepage": "https://github.com/toanh/codestore#readme",
+  "engines": {
+    "node": "14.17.x"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
