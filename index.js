@@ -38,12 +38,19 @@ app.get('/db', async (req, res) => {
 
 app.post('/dbput', async (req, res) => {
     
-    const text = 'INSERT INTO code_store(id, code) VALUES($1, $2) RETURNING *';   
+    var text = 'INSERT INTO code_store(id, code) VALUES($1, $2) RETURNING *';   
     try {
-      id = shortid.generate();
+      id = req.body['id'];
       code = req.body['code'];
-      const client = await pool.connect();
       
+      if (id === null || id.length == 0) {
+        id = shortid.generate();
+      }
+      else {
+        text = 'UPDATE code_store SET code = $2 WHERE id = $1 RETURNING *';             
+      }
+           
+      const client = await pool.connect();      
       const result = await client.query(text, [id, code]);
       const results = { 'results': (result) ? result.rows : null};
       console.log(results);
