@@ -40,10 +40,10 @@ app.post('/dbput', async (req, res) => {
     
     var text = 'INSERT INTO code_store(id, code) VALUES($1, $2) RETURNING *';   
     try {
-      id = req.body['id'];
-      code = req.body['code'];
+      id = 'id' in req.body? req.body['id'] : '';
+      code = 'code' in req.body ? req.body['code'] : '';
       
-      if (id === null) {
+      if (id === '') {
         id = shortid.generate();
       }
       else {
