@@ -31,8 +31,8 @@ app.get('/db', async (req, res) => {
       res.send(results);
       client.release();
     } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
+      console.error("Error:" + err);
+      res.end();   
     }
 })
 
@@ -59,8 +59,7 @@ app.post('/dbput', async (req, res) => {
       client.release();
     } catch (err) {
       console.error("Error:" + err);
-      res.end();
-      client.release();      
+      res.end();   
     }
 })
 app.get('/dbget', async (req, res) => {
@@ -75,7 +74,6 @@ app.get('/dbget', async (req, res) => {
     } catch (err) {
       console.error("Error:" + err);
       res.end();
-      client.release();  
     }
 })
 
