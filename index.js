@@ -43,7 +43,7 @@ app.post('/dbput', async (req, res) => {
       id = req.body['id'];
       code = req.body['code'];
       
-      if (id === null || id.length == 0) {
+      if (id === null) {
         id = shortid.generate();
       }
       else {
