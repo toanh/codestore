@@ -73,7 +73,7 @@ app.get('/dbget', async (req, res) => {
       res.send(result.rows[0]['code']);
       client.release();
     } catch (err) {
-      console.error("Error attempting to get code on id: " + id);
+      console.error("Error attempting to get code on id: " + req.query.id);
 	  console.error("Error msg:" + err);
       res.end();
     }
