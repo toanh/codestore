@@ -58,7 +58,8 @@ app.post('/dbput', async (req, res) => {
       res.send(id);
       client.release();
     } catch (err) {
-      console.error("Error:" + err);
+      console.error("Error attempting to store code on id: " + id + " with code: " + code);
+	  console.error("Error msg:" + err);
       res.end();   
     }
 })
@@ -72,7 +73,8 @@ app.get('/dbget', async (req, res) => {
       res.send(result.rows[0]['code']);
       client.release();
     } catch (err) {
-      console.error("Error:" + err);
+      console.error("Error attempting to get code on id: " + id);
+	  console.error("Error msg:" + err);
       res.end();
     }
 })
